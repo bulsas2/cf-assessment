@@ -1,0 +1,5 @@
+customer,count_customer_number,sum_customer_rating,high_value_count,invalid_customer_number_count,invalid_customer_number_percent
+agency_a,19,4269338,5,0,0.00
+agency_b,16,4384678,4,3,15.79
+agency_c,19,4929744,1,0,0.00
+agency_d,18,4432669,0,1,5.26
