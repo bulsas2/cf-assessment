@@ -1,9 +1,8 @@
 ## Table of Contents
 
 - [Scripts](#scripts)
-  - [load_daily_customer_files.py](#loaddailycustomer_filespy)
-  - [generate_report_customer_rating_agg.py](#generatereportcustomerratingaggpy)
-    - [Metrics](#metrics)
+  - [load_daily_customer_files.py](#load_daily_customer_filespy)
+  - [generate_report_customer_rating_agg.py](#generate_report_customer_rating_aggpy)
 - [Assumptions](#assumptions)
   - [Orchestration](#orchestration)
   - [File](#file)
@@ -14,7 +13,10 @@
   - [Postgres](#postgres)
 
 ### Scripts
-`load_daily_customer_files.py`: Will read the daily batch files for each customer and persist to a specific table. If a row is invalid, it will save it to a separate table (file_invalid_rows) for auditing.
+
+#### load_daily_customer_files.py
+
+Will read the daily batch files for each customer and persist to a specific table. If a row is invalid, it will save it to a separate table (file_invalid_rows) for auditing.
 
 ```mermaid
 ---
@@ -29,7 +31,9 @@ flowchart LR
 ```
 
 
-`generate_report_customer_rating_agg.py`: Will generate the customer rating aggregated report into a CSV in the `output` folder. You can view an example here: `./output/Customer_Rating_Aggregate_Report_20250513.csv` 
+#### generate_report_customer_rating_agg.py
+
+Will generate the customer rating aggregated report into a CSV in the `output` folder. You can view an example here: `./output/Customer_Rating_Aggregate_Report_20250513.csv` 
 
 #### Metrics
 - count_customer_number (valid rows only)
