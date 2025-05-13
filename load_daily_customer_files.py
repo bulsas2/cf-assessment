@@ -179,6 +179,7 @@ if __name__ == "__main__":
     # Stage environment: Clear the invalid rows table before running again.
     clear_file_invalid_rows_table(db_config=db_config)
 
+    # Load file for Agency A
     file_loader_agency_a = CsvToPostgresLoader(
         db_config=db_config,
         file_path="./data/Customer Rating Agency A Inc.csv",
@@ -186,6 +187,7 @@ if __name__ == "__main__":
     )
     file_loader_agency_a.run()
 
+    # Load file for Agency B
     file_loader_agency_b = CsvToPostgresLoader(
         db_config=db_config,
         file_path="./data/Customer Rating Agency B Inc.csv",
@@ -193,6 +195,7 @@ if __name__ == "__main__":
     )
     file_loader_agency_b.run()
 
+    # Load file for Agency C
     file_loader_agency_c = CsvToPostgresLoader(
         db_config=db_config,
         file_path="./data/Customer Rating Agency C Inc.csv",
@@ -200,6 +203,7 @@ if __name__ == "__main__":
     )
     file_loader_agency_c.run()
 
+    # Load file for Agency D
     file_loader_agency_d = CsvToPostgresLoader(
         db_config=db_config,
         file_path="./data/Customer Rating Agency D Inc.csv",

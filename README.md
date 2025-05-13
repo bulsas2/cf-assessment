@@ -1,6 +1,7 @@
 ### Scripts
 `load_daily_customer_files.py`: Will read the daily batch files for each customer and persist to a specific table. If a row is invalid, it will save it to a separate table (file_invalid_rows) for auditing.
 
+```mermaid
 ---
 config:
       theme: redux
@@ -10,10 +11,17 @@ flowchart LR
         A --> B{"Is Row Valid?"}
         B -- Yes --> C["customer_rating_*"]
         B -- No --> D["file_invalid_rows"]
+```
 
 
+`generate_report_customer_rating_agg.py`: Will generate the customer rating aggregated report into a CSV in the `output` folder. You can view an example here: `./output/Customer_Rating_Aggregate_Report_20250513.csv` 
 
-`generate_report_customer_rating_agg.py`: Will generate the customer rating aggregated report into a CSV in the `output` folder.
+#### Metrics
+- count_customer_number (valid rows only)
+- sum_customer_rating (valid rows only)
+- high_value_count (valid rows only)
+- invalid_customer_number_count (invalid rows only)
+- invalid_customer_number_percent (both valid and invalid rows)
 
 ### Assumptions
 
@@ -29,7 +37,7 @@ flowchart LR
 ### Improvements
 - For invalid rows, filter them out and store in a separate file for reconciliation. Or to keep it simple, we reject files that don't honor the schema we agreed to.
 - For file ingestion, we create a generic framework driven by metadata so we can onboard new customer and files very quickly. Less maintenance and code.
-- For the report, we don't do a union across all customer tables. This will be an expensive query. Instead, create a consolidated table with all customers and the common columns. Users can perform multiple queries off of this table.
+- For the report, we shouldn't do a union across all customer tables. This will be an expensive query. Instead, create a consolidated table with all customers and the common columns. Users can perform multiple queries off of this table.
 
 ---
 
