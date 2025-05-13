@@ -1,3 +1,18 @@
+## Table of Contents
+
+- [Scripts](#scripts)
+  - [load_daily_customer_files.py](#loaddailycustomer_filespy)
+  - [generate_report_customer_rating_agg.py](#generatereportcustomerratingaggpy)
+    - [Metrics](#metrics)
+- [Assumptions](#assumptions)
+  - [Orchestration](#orchestration)
+  - [File](#file)
+- [Improvements](#improvements)
+- [Completed Requirements](#completed-requirements)
+- [Local Setup](#local-setup)
+  - [Python (3.9.6)](#python-396)
+  - [Postgres](#postgres)
+
 ### Scripts
 `load_daily_customer_files.py`: Will read the daily batch files for each customer and persist to a specific table. If a row is invalid, it will save it to a separate table (file_invalid_rows) for auditing.
 
@@ -38,6 +53,7 @@ flowchart LR
 - For invalid rows, filter them out and store in a separate file for reconciliation. Or to keep it simple, we reject files that don't honor the schema we agreed to.
 - For file ingestion, we create a generic framework driven by metadata so we can onboard new customer and files very quickly. Less maintenance and code.
 - For the report, we shouldn't do a union across all customer tables. This will be an expensive query. Instead, create a consolidated table with all customers and the common columns. Users can perform multiple queries off of this table.
+- For the `file_invalid_rows` table, extend the invalid column to an array or JSONB type so we can list multiple columns that failed. Also add a high-level error so we can triage issues.
 
 ---
 
